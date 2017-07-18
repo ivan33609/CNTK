@@ -19,9 +19,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D45DF403-6781-444E-B654-A96868C5BE68}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reader Plugins", "Reader Plugins", "{33EBFE78-A1A8-4961-8938-92A271941F94}"
-	ProjectSection(SolutionItems) = preProject
-		bindings\java\Swig\post-build.cmd = bindings\java\Swig\post-build.cmd
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CNTK Core", "CNTK Core", "{DD043083-71A4-409A-AA91-F9C548DCF7EC}"
 EndProject
@@ -1558,6 +1555,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Java", "Java", "{F37067BD-8
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CNTKLibraryJavaBinding", "bindings\java\Swig\CNTKLibraryJavaBinding.vcxproj", "{5D1972FA-F0A4-4035-8E63-8BAEF0230097}"
 	ProjectSection(ProjectDependencies) = postProject
+		bindings\java\Swig\post-build.cmd = bindings\java\Swig\post-build.cmd
 		{E5606ECE-48CA-4464-BB12-09D81D02B9EF} = {E5606ECE-48CA-4464-BB12-09D81D02B9EF}
 	EndProjectSection
 EndProject
