@@ -14,6 +14,9 @@ from skimage.transform import rotate
 from skimage.viewer import ImageViewer
 import sys
 
+# TODO
+os.environ["SDL_VIDEODRIVER"] = "dummy"
+
 # Loat the right urlretrieve based on python version
 try: 
     from urllib.request import urlretrieve 
