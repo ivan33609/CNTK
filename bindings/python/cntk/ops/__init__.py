@@ -1456,7 +1456,7 @@ def cos(x, name=''):
 
 
 @typemap
-def softmax(x, axis=None, name=''):
+def softmax(x, axis=-1, name=''):
     r'''
     Computes the gradient of :math:`f(z)=\log\sum_i\exp(z_i)` at ``z = x``. Concretely,
 
@@ -1469,8 +1469,8 @@ def softmax(x, axis=None, name=''):
     therefore be interpreted as probabilities for mutually exclusive outcomes
     as in the case of multiclass classification.
 
-    If ``axis`` is given, the softmax will be computed along that axis. Otherwise, it
-    will be computed along the last axis.
+    If ``axis`` is given as integer, then the softmax will be computed along that axis. If it is None, then it will
+    be computed on all axes. Otherwise, it will be computed along the last axis.
 
     Example:
         >>> C.softmax([[1, 1, 2, 3]]).eval()
@@ -1496,23 +1496,8 @@ def softmax(x, axis=None, name=''):
     '''
     from cntk.cntk_py import softmax
     x = sanitize_input(x)
-
-    last_axis = len(x.shape)-1
-    is_last_axis = (axis is None) or (axis == -1) or (axis == last_axis)
-
-    # For softmax on different axis, simply swap axis then call the standard softmax.
-    if is_last_axis:
-        return softmax(x, name)
-    else:
-        from cntk.cntk_py import transpose_axes
-        axis = sanitize_axis(axis)
-        last_axis = sanitize_axis(last_axis)
-
-        xp = placeholder()
-        f = transpose_axes(xp, axis, last_axis)
-        f = softmax(f)
-        f = transpose_axes(f, last_axis, axis)
-        return as_block(f, [(xp, x)], 'softmax', name)
+    axis = sanitize_axis(axis)
+    return softmax(x, axis, name)
 
 @typemap
 def hardmax(x, name=''):
